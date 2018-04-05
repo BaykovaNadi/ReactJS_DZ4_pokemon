@@ -20,7 +20,7 @@ export default class PokemonList extends PureComponent {
         const { pokemons } = this.props;
         return (
             <div>
-                {pokemons.map(pokemon => <Pokemon {...pokemon} />)}
+                {pokemons.results.map(pokemon => <Pokemon {...pokemon} />)}
             </div>
         );
     }
