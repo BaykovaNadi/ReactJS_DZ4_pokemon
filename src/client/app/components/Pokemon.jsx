@@ -12,6 +12,7 @@ export default class Pokemon extends PureComponent {
 render() {
     const { url, name } = this.props;
     const urlPicture = 'https://github.com/PokeAPI/sprites/tree/master/sprites/pokemon/';
+    
     return (
         <div>
             {name}

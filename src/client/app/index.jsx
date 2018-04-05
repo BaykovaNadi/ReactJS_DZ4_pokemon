@@ -7,13 +7,11 @@ import PocemonList from './containers/PocemonListContainer';
 
 class App extends Component {
     render() {
-        return (
-            <div>
+        return <div>
                 <Header />
                 <PocemonList />
                 <Footer />
-            </div>
-        );
+            </div>;
     }
 }
 
