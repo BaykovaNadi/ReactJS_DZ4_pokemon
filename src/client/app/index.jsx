@@ -4,7 +4,7 @@ import ReactDom from 'react-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-import PokemonList from './containers/PokemonListContainer';
+import PokemonListContainer from './containers/PokemonListContainer';
 
 class App extends Component {
     render() {
