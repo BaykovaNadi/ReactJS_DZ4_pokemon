@@ -10,30 +10,30 @@ export default class PokemonListContainer extends PureComponent {
         this.state = {
             pokemons: [],
             loading: false
-        };
-    }
+        }
+    };
 
     componentWillMount() {
         this.setState({
             loading: true
         });
 
-        fetch('http://localhost:3000/results')
-            .then(res => res.json())
-            .then(pokemons => {
+        fetch('https://pokeapi.co/api/v2/pokemon/?limit=15')
+            .then(response => response.json())
+            .then(pokemonsList => {
                 this.setState({
                     loading: false,
-                    pokemons
+                    pokemons: pokemonsList.results
                 });
             });
     }
-
+    
     render() {
         const { loading, pokemons} = this.state;
         return (
             <div>
-                { loading ? 'Идет загрузка' : <PokenonList pokemons={pokemons} /> }
+            { loading ? 'Идет загрузка' : <PokemonList pokemons={pokemons}/> }
             </div>
         );
-    }
+    };
 }
