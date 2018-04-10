@@ -21,7 +21,9 @@ export default class PokemonList extends PureComponent {
     };
 
     handleDescriptionClick = (id) => {
-        const { onDescriptionClick } = this.props;
+        const { url, onDescriptionClick } = this.props;
+
+        // const id = url.split('\/')[6];
 
         if(typeof onDescriptionClick === 'function') {
             onDescriptionClick(id);

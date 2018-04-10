@@ -40,7 +40,7 @@ export default class Pokemon extends PureComponent {
                 <div onClick={this.clickHandler}>
                     <img src={urlFigure}/>
                 </div>
-                <div onClick={this.clickHandler} className='info'>{description}</div>
+                <div className='info'>{description}</div>
             </div>
         );
     };
