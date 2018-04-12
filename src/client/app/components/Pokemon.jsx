@@ -25,7 +25,8 @@ export default class Pokemon extends PureComponent {
         super(props);
 
         this.state = {
-            id: this.props.url.split('\/')[6]
+            id: this.props.url.split('\/')[6],
+            description: this.props.description
         }
     };
 
@@ -39,8 +40,8 @@ export default class Pokemon extends PureComponent {
     };
 
     render() {
-        const { description } = this.props;
-        const { url, name, id } = this.state;
+        const { id } = this.state;
+        const { url, name, description } = this.props;
 
         const urlFigure = `https://pokeapi.co//media/img/${id}.png`;
         
