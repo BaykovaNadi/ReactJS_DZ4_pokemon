@@ -18,7 +18,7 @@ export default class PokemonListContainer extends PureComponent {
             loading: true
         });
 
-        fetch('https://pokeapi.co/api/v2/pokemon/?limit=2')
+        fetch('https://pokeapi.co/api/v2/pokemon/?limit=15')
             .then(response => response.json())
             .then(pokemonsList => {
                 this.setState({
@@ -26,34 +26,13 @@ export default class PokemonListContainer extends PureComponent {
                     pokemons: pokemonsList.results
                 });
             });
-            
-    }
-
-    onDescriptionClick = (id) => {
-        this.setState({
-            loading: false,
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-          });
-
-        // fetch('https://pokeapi.co/api/v2/pokemon/?limit=2')
-        //     .then(response => response.json())
-        //     .then(pokemonsList => {
-        //         this.setState({
-        //             loading: false,
-        //             pokemons: pokemonsList.results
-        //         });
-        //     });
-        return {
-            pokemons, 
-            loading: false
-        }        
     }
     
     render() {
         const { loading, pokemons} = this.state;
         return (
             <div>
-            { loading ? 'Идет загрузка' : <PokemonList onDescriptionClick= {this.onDescriptionClick} pokemons={pokemons} />}
+            { loading ? 'Идет загрузка' : <PokemonList pokemons={pokemons}/> }
             </div>
         );
     };

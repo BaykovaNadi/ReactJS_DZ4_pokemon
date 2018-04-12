@@ -8,11 +8,6 @@ export default class PokemonList extends PureComponent {
         pokemons: PropTypes.arrayOf({
             url: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
-            descriptions: [{
-                description: PropTypes.stringisRequired,
-                language: PropTypes.stringisRequired
-            }],
-            onDescriptionClick: PropTypes.func
         })
     };
 
@@ -20,21 +15,11 @@ export default class PokemonList extends PureComponent {
         pokemons: []
     };
 
-    handleDescriptionClick = (id) => {
-        const { url, onDescriptionClick } = this.props;
-
-        // const id = url.split('\/')[6];
-
-        if(typeof onDescriptionClick === 'function') {
-            onDescriptionClick(id);
-          }
-    };
-
     render() {
         const {pokemons} = this.props;
         return (
             <div>
-                {pokemons.map(pokemon => <Pokemon {...pokemon} onDescriptionClick={this.handleDescriptionClick} />)}
+                {pokemons.map(pokemon => <Pokemon {...pokemon} />)}
             </div>
         );
     }
