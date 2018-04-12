@@ -6,12 +6,19 @@ export default class Pokemon extends PureComponent {
         url: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         id: PropTypes.number,
+        descriptions: PropTypes.shape({
+            description: PropTypes.string,
+            language: PropTypes.string
+        }),
+        onDescriptionClick: PropTypes.func
     };
 
     static defaultProps = {
         url: 'No url',
         name: 'No name',
-        id: 0
+        id: 0,
+        description: 'Info',
+        language: ' '
     };
 
     constructor(props) {
@@ -22,19 +29,29 @@ export default class Pokemon extends PureComponent {
         }
     };
 
+    clickHandle = (event) => {
+        const { onDescriptionClick, description } = this.props;
+        console.log(description);
+
+        if (typeof onDescriptionClick === 'function') {
+            onDescriptionClick();
+        }
+    };
+
     render() {
-        const { url, name, id } = this.state;
+        // const { description } = this.props;
+        const { url, name, id, description } = this.state;
 
         const urlFigure = `https://pokeapi.co//media/img/${id}.png`;
         
         return (
             <div className='image'>
                 <p>{name}</p>
-                <div>
+                <div onClick={this.clickHandle}>
                     <img src={urlFigure}/>   
                 </div>
                 <div className='info'>
-                    Info
+                    {description}
                 </div>
             </div>
         );
