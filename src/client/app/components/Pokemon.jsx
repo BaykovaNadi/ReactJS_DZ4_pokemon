@@ -30,6 +30,7 @@ export default class Pokemon extends PureComponent {
     };
 
     clickHandle = (event) => {
+        
         const { onDescriptionClick, description } = this.props;
 
         if (typeof onDescriptionClick === 'function') {
