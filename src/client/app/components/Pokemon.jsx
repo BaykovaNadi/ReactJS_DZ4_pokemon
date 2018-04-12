@@ -31,7 +31,6 @@ export default class Pokemon extends PureComponent {
 
     clickHandle = (event) => {
         const { onDescriptionClick, description } = this.props;
-        console.log(description);
 
         if (typeof onDescriptionClick === 'function') {
             onDescriptionClick();
@@ -39,8 +38,8 @@ export default class Pokemon extends PureComponent {
     };
 
     render() {
-        // const { description } = this.props;
-        const { url, name, id, description } = this.state;
+        const { description } = this.props;
+        const { url, name, id } = this.state;
 
         const urlFigure = `https://pokeapi.co//media/img/${id}.png`;
         

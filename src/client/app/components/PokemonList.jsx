@@ -31,7 +31,11 @@ export default class PokemonList extends PureComponent {
 
     clickHandle = () => {
         const { description } = this.state;
-        console.log('Fired');
+        // this.setState({
+        //     description: this.props.description
+        // });
+        this.setState = this.props;
+        console.log ('props', this.props);
     };
 
     render() {
