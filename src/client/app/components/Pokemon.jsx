@@ -5,25 +5,36 @@ export default class Pokemon extends PureComponent {
     static propTypes = {
         url: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
+        id: PropTypes.number,
     };
 
     static defaultProps = {
         url: 'No url',
-        name: 'No name'
+        name: 'No name',
+        id: 0
+    };
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            id: this.props.url.split('\/')[6]
+        }
     };
 
     render() {
-        const { url, name } = this.props;
-        const id = url.split('\/')[6];
+        const { url, name, id } = this.state;
+
         const urlFigure = `https://pokeapi.co//media/img/${id}.png`;
         
         return (
             <div className='image'>
                 <p>{name}</p>
-                <img src={urlFigure}/>
+                <div>
+                    <img src={urlFigure}/>   
+                </div>
                 <div className='info'>
-                    Info <br>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Info
                 </div>
             </div>
         );

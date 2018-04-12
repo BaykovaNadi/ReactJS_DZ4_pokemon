@@ -8,6 +8,7 @@ export default class PokemonList extends PureComponent {
         pokemons: PropTypes.arrayOf({
             url: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
+            id: PropTypes.number,
         })
     };
 
