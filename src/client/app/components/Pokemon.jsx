@@ -32,13 +32,29 @@ export default class Pokemon extends PureComponent {
 
     clickHandle = (event) => {
         
-        const { onDescriptionClick } = this.props;
+        const { onDescriptionClick, url, descriptions } = this.props;
 
-        this.setState({
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        });
+        // this.setState({
+        //     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        //     language: 'en'
+        // });
         
-        // resolveDescription(url, descriptions);
+        const url1 = url.replace('pokemon','characteristic');
+    
+        fetch(url1)
+            .then(response => response.json())
+            .then(descriptions => {
+                    this.setState({
+                        descriptions: description,
+                        descriptions: language
+                    });
+                });
+
+        console.log('Fired', url1, descriptions);
+
+        // this.setState({
+        //     descriptions: resolveDescription(url)
+        // });
 
         if (typeof onDescriptionClick === 'function') {
             onDescriptionClick();
@@ -46,11 +62,10 @@ export default class Pokemon extends PureComponent {
     };
 
     render() {
-        const { id, description } = this.state;
+        const { id, description, language } = this.state;
         const { url, name } = this.props;
 
         const urlFigure = `https://pokeapi.co//media/img/${id}.png`;
-        console.log('Fired', url, id, name, description);
         
         return (
             <div className='image'>
@@ -59,7 +74,8 @@ export default class Pokemon extends PureComponent {
                     <img src={urlFigure}/>   
                 </div>
                 <div className='info'>
-                    {description}
+                    {description} <br/>
+                    {language}
                 </div>
             </div>
         );
