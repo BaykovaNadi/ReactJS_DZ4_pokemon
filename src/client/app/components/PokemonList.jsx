@@ -9,40 +9,22 @@ export default class PokemonList extends PureComponent {
             url: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             id: PropTypes.number,
-            descriptions: PropTypes.shape({
-                description: PropTypes.string,
-                language: PropTypes.string
-            }),
-            onDescriptionClick: PropTypes.func
+            // descriptions: PropTypes.shape({
+            //     description: PropTypes.string,
+            //     language: PropTypes.string
+            // }),
+            // load: PropTypes.func
         })
     };
 
-    static defaultProps = {
-        pokemons: []
-    };
-
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-            descriptions: []
-        }
-    };
-
-    clickHandle = (description) => {
-        const { url, name, id, onDescriptionClick } = this.props;
-
-        if(typeof onDelete === 'function') {
-            onDescriptionClick();
-          }
-    };
-
     render() {
-        const {pokemons} = this.props;
-        const { description } = this.state;
+        const { pokemons,onLoadClick } = this.props;
         return (
             <div>
-                {pokemons.map(pokemon => <Pokemon {...pokemon} onDescriptionClick={this.clickHandle} />)}
+                <button onClick={onLoadClick}>Load Pokemons</button>
+                <ul>
+                    {pokemons.map(pokemon => <li>{pokemon.name}</li>)}
+                </ul>
             </div>
         );
     }

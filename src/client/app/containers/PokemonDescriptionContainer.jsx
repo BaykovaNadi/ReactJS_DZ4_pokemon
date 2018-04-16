@@ -5,29 +5,42 @@ import Pokemon from '../components/Pokemon';
 
 export default class PokemonDescriptionContainer extends PureComponent {
     constructor(props) {
-    super(props);
+        super(props);
 
-    this.state = {
-        pokemons: [],
-        loading: false
-    }
-};
+        this.state = {
+            descriptions: [],
+            loading: false
+        }
+    };
 
-resolveDescription(url) {
-
-    const url1 = url.replace('pokemon','characteristic');
+    // componentWillMount() {
+    //     this.setState({
+    //         loading: true
+    //     });
+}
     
-    console.log(url1);
-
-    fetch(url1)
+    resolveDescription(url, descriptions) {
+        url.replace('pokemon','characteristic');
+        
+        fetch(url)
         .then(response => response.json())
         .then(this.setState({
-
                 loading: false,
-                descriptions: descriptions,
-            })
+                descriptions: descriptions
+            });
         );
 
-    return descriptions;
-};
+        return description;
+    }
+
+    render() {
+        const { url } = this.props;
+        resolveDescription(url, description);
+
+        return (
+            <div>
+            { loading ? 'Идет загрузка' : <Pokemon {...descriptions}/> }
+            </div>
+        );
+    };
 }

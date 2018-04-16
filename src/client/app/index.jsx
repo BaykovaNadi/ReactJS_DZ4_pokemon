@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
-import PokemonListContainer from './containers/PokemonListContainer';
-import PokemonDescriptionContainer from './containers/PokemonDescriptionContainer';
+import App from './App';
+import { reducer } from './reducers/pokemons';
 
-class App extends Component {
-    render() {
-        return <div>
-                <Header />
-                <PokemonListContainer />
-                <Footer />
-            </div>;
-    }
-}
+const store = createStore();
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render((
+    <Provider store={store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>
+), document.getElementById('app'));
+
+
